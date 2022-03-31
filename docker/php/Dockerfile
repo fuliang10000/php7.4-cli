@@ -35,7 +35,7 @@ RUN pecl channel-update pecl.php.net
 RUN pecl install igbinary && docker-php-ext-enable igbinary
 RUN pecl install mcrypt && docker-php-ext-enable mcrypt
 RUN pecl install swoole && docker-php-ext-enable swoole
-#RUN pecl install redis-5.0.0 && docker-php-ext-enable redis
+RUN pecl install redis && docker-php-ext-enable redis
 #RUN pecl install mongodb-1.5.1 && docker-php-ext-enable mongodb
 #RUN pecl install xhprof-2.1.3 && docker-php-ext-enable xhprof
 #RUN pecl install xdebug-2.9.8 && docker-php-ext-enable xdebug
