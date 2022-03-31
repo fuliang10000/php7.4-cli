@@ -1,0 +1,16 @@
+version: '3' #cdocker-compose版本
+services: #所有服务集合
+  php: #官方php服务
+    build: ./docker/php
+    restart: always
+    ports:
+      - "9002:9000"
+    volumes:
+      - "../../starlink:/var/www/" #代码目录
+      - "/var/www:/var/www" #代码目录
+      - "./docker/php/ini/php.ini-development:/usr/local/etc/php/php.ini" #php配置文件
+    networks:
+      - docker-net
+networks:
+  docker-net:
+    external: true
