@@ -1918,6 +1918,9 @@ openssl.cafile="/usr/lib/php/ext/cacert.pem"
 ; SSL stream context option.
 ;openssl.capath=
 
+[swoole]
+swoole.use_shortname='Off'
+
 ; Local Variables:
 ; tab-width: 4
 ; End:

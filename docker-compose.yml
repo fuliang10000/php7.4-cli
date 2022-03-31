@@ -1,5 +1,35 @@
 version: '3' #cdocker-compose版本
 services: #所有服务集合
+  mysql: #官方mysql数据库服务
+    image: mysql:5.7 #镜像源
+    restart: always #异常退出后重启
+    env_file: .env #导入配置变量
+    environment: #容器中环境变量
+      MYSQL_ROOT_PASSWORD: "${DB_PASSWORD}" #数据库root用户密码
+      MYSQL_DATABASE: "${DB_DATABASE}" #新创建数据库名称
+      MYSQL_USER: "${DB_USERNAME}" #数据库用户名
+      MYSQL_PASSWORD: "${DB_PASSWORD}" #数据库密码
+      TZ: "Asia/Shanghai"
+    volumes: #数据卷,挂载目录
+      - ./mysql/data:/var/lib/mysql #mysql数据库数据文件存放目录;宿主机目录:容器目录
+    #      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf #mysql配置文件
+    ports: #与宿主进的端口映射
+      - "${DB_PORT}:3306" #宿主机端口:容器端口
+    networks:
+      - docker-net
+  redis: #官方redis服务
+    build: ./docker/redis
+    restart: always #异常退出后重启
+    env_file: .env #导入配置变量
+    environment: #容器中环境变量
+      REDIS_PASSWORD: "${REDIS_PASSWORD}"
+    volumes:
+      - ./redis/data:/var/lib/redis #redis数据文件存放目录
+      - ./docker/redis/conf/redis.conf:/usr/local/etc/redis/redis.conf
+    command: > #设置redis启动密码
+      --requirepass "${REDIS_PASSWORD}"
+    ports:
+      - "${REDIS_PORT}:6379"
   php: #官方php服务
     build: ./docker/php
     restart: always
