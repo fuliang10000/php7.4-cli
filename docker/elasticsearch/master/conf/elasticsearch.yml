@@ -3,11 +3,11 @@ cluster.name: "es-cluster"
 #节点名称
 node.name: es-master
 #锁定物理内存地址，防止es内存被交换出去
-bootstrap.memory_lock: true
+bootstrap.memory_lock: false
 #表示这个节点是否可以充当主节点
 node.master: true
 #是否充当数据节点
-node.data: true
+node.data: false
 #绑定host，0.0.0.0代表当前节点的ip
 network.host: 0.0.0.0
 #设置对外服务的http端口，默认为9200
