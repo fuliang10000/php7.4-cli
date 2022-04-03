@@ -109,15 +109,16 @@ services: #所有服务集合
       - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/data:rw"
       - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
       - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/logs:rw"
-    environment:
-      - discovery.type=single-node
+#    environment:
+#表示单节点
+#      - discovery.type=single-node
     ports:
       - "9200:9200"
       - "9300:9300"
   es-node1:
     image: elasticsearch:8.1.0
     container_name: es-node1
-    restart: always
+    restart: alway
     volumes:
       - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
       - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
