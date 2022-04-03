@@ -118,7 +118,7 @@ services: #所有服务集合
   es-node1:
     image: elasticsearch:8.1.0
     container_name: es-node1
-    restart: alway
+    restart: always
     volumes:
       - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
       - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
