@@ -1,0 +1,74 @@
+2022/03/03 09:41:42 [error] 8#8: *10 FastCGI sent in stderr: "PHP message: PHP Notice:  Undefined variable: name in /var/www/starlink/personal/backend/views/site/error.php on line 6
+PHP message: PHP Stack trace:
+PHP message: PHP   1. yii\web\ErrorHandler->handleException() /var/www/starlink/personal/vendor/yiisoft/yii2/base/ErrorHandler.php:0
+PHP message: PHP   2. yii\web\ErrorHandler->renderException() /var/www/starlink/personal/vendor/yiisoft/yii2/base/ErrorHandler.php:135
+PHP message: PHP   3. yii\web\Application->runAction() /var/www/starlink/personal/vendor/yiisoft/yii2/web/ErrorHandler.php:109
+PHP message: PHP   4. backend\controllers\SiteController->runAction() /var/www/starlink/personal/vendor/yiisoft/yii2/base/Module.php:552
+PHP message: PHP   5. yii\base\InlineAction->runWithParams() /var/www/starlink/personal/vendor/yiisoft/yii2/base/Controller.php:178
+PHP message: PHP   6. call_user_func_array:{/var/www/starlink/personal/vendor/yiisoft/yii2/base/InlineAction.php:57}() /var/www/starlink/personal/vendor/yiisoft/yii2/base/InlineAction.php:57
+PHP message: PHP   7. backend\controllers\SiteController->actionError() /var/www/starlink/personal/vendor/yiisoft/yii2/base/InlineAction.php:57
+PHP message: PHP   8. backend\controllers\SiteController->render() /var/www/starlink/personal/backend/controllers/SiteController.php:140
+PHP message: PHP   9. yii\web\View->render() /var/www/starlink/personal/vendor/yiisoft/yii2/base/Controller.php:407
+PHP message: PHP  10. yii\web\View->renderFile() /var/www/starlink/personal/vendor/yiisoft/yii2/base/View.php:156
+PHP message: PHP  11. yii\web\View->renderPhpFile() /var/www/starlink/personal/vendor/yiisoft/yii2/base/View.php:257
+PHP message: PHP  12. require() /var/www/starlink/personal/vendor/yiisoft/yii2/base/View.php:347" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /assets/index.html HTTP/1.1", upstream: "fastcgi://172.19.0.4:9000", host: "local.b2cstore.com", referrer: "http://local.b2cstore.com/admin-role/in
+2022/03/15 01:57:00 [error] 7#7: *1007 FastCGI sent in stderr: "PHP message: PHP Notice:  crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash. in /var/www/starlink/personal/backend/web/index2.php on line 3
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/starlink/personal/backend/web/index2.php:0
+PHP message: PHP   2. crypt() /var/www/starlink/personal/backend/web/index2.php:3" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /index2.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/15 02:00:55 [error] 7#7: *1011 FastCGI sent in stderr: "PHP message: PHP Notice:  crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash. in /var/www/starlink/personal/backend/web/index2.php on line 3
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/starlink/personal/backend/web/index2.php:0
+PHP message: PHP   2. crypt() /var/www/starlink/personal/backend/web/index2.php:3" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /index2.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/15 02:01:01 [error] 7#7: *1011 FastCGI sent in stderr: "PHP message: PHP Notice:  crypt(): No salt parameter was specified. You must use a randomly generated salt and a strong hash function to produce a secure hash. in /var/www/starlink/personal/backend/web/index2.php on line 3
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/starlink/personal/backend/web/index2.php:0
+PHP message: PHP   2. crypt() /var/www/starlink/personal/backend/web/index2.php:3" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /index2.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/16 14:50:03 [error] 7#7: *1043 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Allowed memory size of 134217728 bytes exhausted (tried to allocate 20480 bytes) in /var/www/starlink/personal/backend/web/index2.php on line 11
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/starlink/personal/backend/web/index2.php:0" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /index2.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 06:52:40 [error] 7#7: *1110 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all() expects parameter 1 to be mysqli_result, boolean given in /var/www/starlink/personal/backend/web/address.php:80
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/address.php(80): mysqli_fetch_all(false, 1)
+#1 /var/www/starlink/personal/backend/web/address.php(7): DB->getRows('select id,addre...')
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/address.php on line 80" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /address.php?address_id=4 HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 06:53:21 [error] 7#7: *1113 FastCGI sent in stderr: "PHP message: PHP Notice:  Array to string conversion in /var/www/starlink/personal/backend/web/address.php on line 5
+PHP message: PHP Stack trace:
+PHP message: PHP   1. {main}() /var/www/starlink/personal/backend/web/address.php:0
+PHP message: PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all() expects parameter 1 to be mysqli_result, boolean given in /var/www/starlink/personal/backend/web/address.php:80
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/address.php(80): mysqli_fetch_all(false, 1)
+#1 /var/www/starlink/personal/backend/web/address.php(7): DB->getRows('select id,addre...')
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/address.php on line 80" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /address.php?address_id=4 HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 07:23:57 [error] 7#7: *1140 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all() expects parameter 1 to be mysqli_result, boolean given in /var/www/starlink/personal/backend/web/address.php:99
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/address.php(99): mysqli_fetch_all(false, 1)
+#1 /var/www/starlink/personal/backend/web/address.php(22): DB->getRows('select `id`,`ad...')
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/address.php on line 99" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /address.php?address_id=4 HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 07:24:25 [error] 7#7: *1140 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: mysqli_fetch_all() expects parameter 1 to be mysqli_result, boolean given in /var/www/starlink/personal/backend/web/address.php:99
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/address.php(99): mysqli_fetch_all(false, 1)
+#1 /var/www/starlink/personal/backend/web/address.php(22): DB->getRows('select `id`,`ad...')
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/address.php on line 99" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /address.php?address_id=4 HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 08:14:00 [error] 7#7: *1197 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: strtr() expects parameter 1 to be string, integer given in /var/www/starlink/personal/backend/web/sort.php:23
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/sort.php(23): strtr(0, '\xC3\x84\xC3\x96\xC3\x9C\xC3\xA4\xC3\xB6\xC3\xBC\xC3\x89\xC3...', 'AOUaouEEAEeeeac')
+#1 /var/www/starlink/personal/backend/web/sort.php(51): natksort(Array)
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/sort.php on line 23" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /sort.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 08:14:23 [error] 7#7: *1200 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: strstr() expects parameter 1 to be string, integer given in /var/www/starlink/personal/backend/web/sort.php:23
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/sort.php(23): strstr(0, '\xC3\x84\xC3\x96\xC3\x9C\xC3\xA4\xC3\xB6\xC3\xBC\xC3\x89\xC3...', 'AOUaouEEAEeeeac')
+#1 /var/www/starlink/personal/backend/web/sort.php(51): natksort(Array)
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/sort.php on line 23" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /sort.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/03/17 08:15:11 [error] 7#7: *1200 FastCGI sent in stderr: "PHP message: PHP Fatal error:  Uncaught TypeError: strtr() expects parameter 1 to be string, integer given in /var/www/starlink/personal/backend/web/sort.php:23
+Stack trace:
+#0 /var/www/starlink/personal/backend/web/sort.php(23): strtr(0, '\xC3\x84\xC3\x96\xC3\x9C\xC3\xA4\xC3\xB6\xC3\xBC\xC3\x89\xC3...', 'AOUaouEEAEeeeac')
+#1 /var/www/starlink/personal/backend/web/sort.php(51): natksort(Array)
+#2 {main}
+  thrown in /var/www/starlink/personal/backend/web/sort.php on line 23" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /sort.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
