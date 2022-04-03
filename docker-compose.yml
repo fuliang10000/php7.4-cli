@@ -106,9 +106,9 @@ services: #所有服务集合
     container_name: es-master
     restart: always
     volumes:
-      - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/master/data:rw"
-      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/master/config/elasticsearch.yml"
-      - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/master/logs:rw"
+      - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/data:rw"
+      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+      - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/logs:rw"
     environment:
       - discovery.type=single-node
     ports:
@@ -119,17 +119,17 @@ services: #所有服务集合
     container_name: es-node1
     restart: always
     volumes:
-      - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch//node1data:rw"
-      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/node1/config/elasticsearch.yml"
-      - "./docker/elasticsearch/node1/logs:/var/lib/elasticsearch/node1/logs:rw"
+      - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
+      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+      - "./docker/elasticsearch/node1/logs:/var/lib/elasticsearch/logs:rw"
   es-node2:
     image: elasticsearch:8.1.0
     container_name: es-node2
     restart: always
     volumes:
-      - "./docker/elasticsearch/node2/data:/var/lib/elasticsearch/node2/data:rw"
-      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/var/lib/elasticsearch/node2/config/elasticsearch.yml"
-      - "./docker/elasticsearch/node2/logs:/var/lib/elasticsearch/node2/logs:rw"
+      - "./docker/elasticsearch/node2/data:/var/lib/elasticsearch/data:rw"
+      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+      - "./docker/elasticsearch/node2/logs:/var/lib/elasticsearch/logs:rw"
   es-head:
     image: tobias74/elasticsearch-head:6
     container_name: es-head
