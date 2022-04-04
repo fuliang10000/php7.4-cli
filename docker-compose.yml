@@ -100,38 +100,50 @@ services: #所有服务集合
       - php:php-fpm
     networks:
       - docker-net
-#  #elasticsearch集群
-#  es-master:
-#    image: elasticsearch:8.1.0
-#    container_name: es-master
-#    restart: always
-#    volumes:
-#      - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/data:rw"
-#      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-#      - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/logs:rw"
-#    environment:
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      #表示单节点
-#      - discovery.type=single-node
-#    ports:
-#      - "9200:9200"
-#      - "9300:9300"
+  #elasticsearch集群
+  es-master:
+    image: elasticsearch:8.1.0
+    container_name: es-master
+    restart: always
+    volumes:
+      - "./docker/elasticsearch/master/data:/usr/share/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "./docker/elasticsearch/master/logs:/usr/share/elasticsearch/logs:rw"
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m"
+      #表示单节点
+      - discovery.type=single-node
+      - http.port=9200
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=false
+      - bootstrap.memory_lock=true
+      #ES8默认开启了 ssl 认证，这里关闭
+      - xpack.security.http.ssl.enabled=false
+      #不使用密码登录
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    networks:
+      - docker-net
 #  es-node1:
 #    image: elasticsearch:8.1.0
 #    container_name: es-node1
 #    restart: always
 #    volumes:
-#      - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
-#      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-#      - "./docker/elasticsearch/node1/logs:/var/lib/elasticsearch/logs:rw"
+#      - "./docker/elasticsearch/node1/data:/usr/share/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+#      - "./docker/elasticsearch/node1/logs:/usr/share/elasticsearch/logs:rw"
 #  es-node2:
 #    image: elasticsearch:8.1.0
 #    container_name: es-node2
 #    restart: always
 #    volumes:
-#      - "./docker/elasticsearch/node2/data:/var/lib/elasticsearch/data:rw"
-#      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-#      - "./docker/elasticsearch/node2/logs:/var/lib/elasticsearch/logs:rw"
+#      - "./docker/elasticsearch/node2/data:/usr/share/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+#      - "./docker/elasticsearch/node2/logs:/usr/share/elasticsearch/logs:rw"
   es-head:
     image: tobias74/elasticsearch-head:6
     container_name: es-head

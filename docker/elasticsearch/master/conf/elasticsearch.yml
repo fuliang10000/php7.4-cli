@@ -23,5 +23,9 @@ http.cors.enabled: true
 http.cors.allow-origin: "*"
 #开启ES的审计日志
 xpack.security.audit.enabled: true
+#ES8默认开启了 ssl 认证，这里关闭
+xpack.security.http.ssl.enabled: false
+#不使用密码登录
+xpack.security.enabled: false
 #日志路径
-path.logs: /var/lib/elasticsearch/master/logs
+path.logs: /usr/share/elasticsearch/logs
