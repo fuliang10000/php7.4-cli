@@ -100,43 +100,46 @@ services: #所有服务集合
       - php:php-fpm
     networks:
       - docker-net
-  #elasticsearch集群
-  es-master:
-    image: elasticsearch:8.1.0
-    container_name: es-master
-    restart: always
-    volumes:
-      - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/data:rw"
-      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-      - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/logs:rw"
+#  #elasticsearch集群
+#  es-master:
+#    image: elasticsearch:8.1.0
+#    container_name: es-master
+#    restart: always
+#    volumes:
+#      - "./docker/elasticsearch/master/data:/var/lib/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+#      - "./docker/elasticsearch/master/logs:/var/lib/elasticsearch/logs:rw"
 #    environment:
-#表示单节点
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      #表示单节点
 #      - discovery.type=single-node
-    ports:
-      - "9200:9200"
-      - "9300:9300"
-  es-node1:
-    image: elasticsearch:8.1.0
-    container_name: es-node1
-    restart: always
-    volumes:
-      - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
-      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-      - "./docker/elasticsearch/node1/logs:/var/lib/elasticsearch/logs:rw"
-  es-node2:
-    image: elasticsearch:8.1.0
-    container_name: es-node2
-    restart: always
-    volumes:
-      - "./docker/elasticsearch/node2/data:/var/lib/elasticsearch/data:rw"
-      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
-      - "./docker/elasticsearch/node2/logs:/var/lib/elasticsearch/logs:rw"
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+#  es-node1:
+#    image: elasticsearch:8.1.0
+#    container_name: es-node1
+#    restart: always
+#    volumes:
+#      - "./docker/elasticsearch/node1/data:/var/lib/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+#      - "./docker/elasticsearch/node1/logs:/var/lib/elasticsearch/logs:rw"
+#  es-node2:
+#    image: elasticsearch:8.1.0
+#    container_name: es-node2
+#    restart: always
+#    volumes:
+#      - "./docker/elasticsearch/node2/data:/var/lib/elasticsearch/data:rw"
+#      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/var/lib/elasticsearch/config/elasticsearch.yml"
+#      - "./docker/elasticsearch/node2/logs:/var/lib/elasticsearch/logs:rw"
   es-head:
     image: tobias74/elasticsearch-head:6
     container_name: es-head
     restart: always
     ports:
       - "9100:9100"
+    networks:
+      - docker-net
 networks:
   docker-net:
     external: true

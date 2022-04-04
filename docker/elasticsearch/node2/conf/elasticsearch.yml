@@ -5,6 +5,6 @@ node.data: true
 network.host: 0.0.0.0
 http.port: 9202
 transport.tcp.port: 9302
-discovery.zen.ping.unicast.hosts: "*.*.*.*:9300, *.*.*.*:9301, *.*.*.*:9302"
+discovery.zen.ping.unicast.hosts: ["*.*.*.*:9300", "*.*.*.*:9301", "*.*.*.*:9302"]
 
 path.logs: /var/lib/elasticsearch/node2/logs
