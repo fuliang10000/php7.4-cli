@@ -2,3 +2,9 @@
 /mysql
 /redis
 /data
+/docker/elasticsearch/master/data/
+/docker/elasticsearch/master/logs/
+/docker/elasticsearch/node1/data/
+/docker/elasticsearch/node1/logs/
+/docker/elasticsearch/node2/data/
+/docker/elasticsearch/node2/logs/
