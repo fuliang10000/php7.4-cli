@@ -72,3 +72,4 @@ Stack trace:
 #1 /var/www/starlink/personal/backend/web/sort.php(51): natksort(Array)
 #2 {main}
   thrown in /var/www/starlink/personal/backend/web/sort.php on line 23" while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET /sort.php HTTP/1.1", upstream: "fastcgi://172.19.0.2:9000", host: "local.b2cstore.com"
+2022/04/04 11:35:41 [error] 8#8: *4 upstream timed out (110: Connection timed out) while reading response header from upstream, client: 172.19.0.1, server: local.b2cstore.com, request: "GET / HTTP/1.1", upstream: "fastcgi://172.19.0.6:9000", host: "local.b2cstore.com"

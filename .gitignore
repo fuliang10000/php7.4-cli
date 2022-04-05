@@ -8,3 +8,4 @@
 /docker/elasticsearch/node1/logs/
 /docker/elasticsearch/node2/data/
 /docker/elasticsearch/node2/logs/
+/docker/nginx/logs/

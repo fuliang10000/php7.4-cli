@@ -1,10 +1,15 @@
-cluster.name: "es-cluster"
-node.name: node2
-node.master: false
-node.data: true
-network.host: 0.0.0.0
-http.port: 9202
-transport.tcp.port: 9302
-discovery.zen.ping.unicast.hosts: ["*.*.*.*:9300", "*.*.*.*:9301", "*.*.*.*:9302"]
-
-path.logs: /var/lib/elasticsearch/node2/logs
+cluster.name: es-cluster
+node.name: es-node2
+http.cors.enabled: true
+http.cors.allow-origin: "*"
+http.cors.allow-headers: X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+http.cors.allow-credentials: false
+bootstrap.memory_lock: true
+#ES8默认开启了 ssl 认证，这里关闭
+xpack.security.http.ssl.enabled: false
+#不使用密码登录
+xpack.security.enabled: false
+discovery.seed_hosts: ["es-master", "es-node1", "es-node2"]
+cluster.initial_master_nodes: ["es-master", "es-node1", "es-node2"]
+path.data: /usr/share/elasticsearch/data
+path.logs: /usr/share/elasticsearch/logs

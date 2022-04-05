@@ -40,27 +40,8 @@ services: #所有服务集合
       --requirepass "${REDIS_PASSWORD}"
     ports:
       - "${REDIS_PORT}:6379"
-  #tool: #工具容器(包含:composer,npm,cnpm,git,php,node...)
-  #  build: ./docker/tool
-  #  depends_on:
-  #    - mysql
-  #    - redis
-  #  volumes: #挂载php配置项
-  #    - ".:/home/www"
-  #    - "../../starlink:/var/www/starlink" #代码目录
-  #    - "./docker/tool/php/php-fpm.conf:/etc/php-fpm.conf"
-  #    - "./docker/tool/php/www.conf:/etc/php-fpm.d/www.conf"
-  #    - "./docker/tool/php/php.ini:/usr/local/etc/php/php.ini"
-  #    - "./docker/tool/php/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini"
-  #  links:
-  #    - mysql:db
-  #    - redis:redis
-  #  entrypoint: #挂起容器不退出
-  #    tail -f /etc/passwd
   php: #官方php服务
     build: ./docker/php
-  #  depends_on:
-  #    - tool
     restart: always
     volumes:
       - "../../starlink:/var/www/starlink" #代码目录
@@ -110,9 +91,8 @@ services: #所有服务集合
 #      - "./docker/elasticsearch/master/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "./docker/elasticsearch/master/logs:/usr/share/elasticsearch/logs:rw"
     environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx1024m"
-      #表示单节点
-      - discovery.type=single-node
+      - cluster.name=es-cluster
+      - node.name=es-master
       - http.port=9200
       - http.cors.enabled=true
       - http.cors.allow-origin=*
@@ -123,27 +103,82 @@ services: #所有服务集合
       - xpack.security.http.ssl.enabled=false
       #不使用密码登录
       - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      #表示单节点
+#      - discovery.type=single-node
+      - discovery.seed_hosts=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
     ports:
       - "9200:9200"
       - "9300:9300"
     networks:
       - docker-net
-#  es-node1:
-#    image: elasticsearch:8.1.0
-#    container_name: es-node1
-#    restart: always
-#    volumes:
-#      - "./docker/elasticsearch/node1/data:/usr/share/elasticsearch/data:rw"
+  es-node1:
+    image: elasticsearch:8.1.0
+    container_name: es-node1
+    restart: always
+    volumes:
+      - "./docker/elasticsearch/node1/data:/usr/share/elasticsearch/data:rw"
 #      - "./docker/elasticsearch/node1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-#      - "./docker/elasticsearch/node1/logs:/usr/share/elasticsearch/logs:rw"
-#  es-node2:
-#    image: elasticsearch:8.1.0
-#    container_name: es-node2
-#    restart: always
-#    volumes:
-#      - "./docker/elasticsearch/node2/data:/usr/share/elasticsearch/data:rw"
+      - "./docker/elasticsearch/node1/logs:/usr/share/elasticsearch/logs:rw"
+    environment:
+      - cluster.name=es-cluster
+      - node.name=es-node1
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=false
+      - bootstrap.memory_lock=true
+      #ES8默认开启了 ssl 认证，这里关闭
+      - xpack.security.http.ssl.enabled=false
+      #不使用密码登录
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.seed_hosts=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    depends_on:
+      - es-master
+    networks:
+      - docker-net
+  es-node2:
+    image: elasticsearch:8.1.0
+    container_name: es-node2
+    restart: always
+    volumes:
+      - "./docker/elasticsearch/node2/data:/usr/share/elasticsearch/data:rw"
 #      - "./docker/elasticsearch/node2/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-#      - "./docker/elasticsearch/node2/logs:/usr/share/elasticsearch/logs:rw"
+      - "./docker/elasticsearch/node2/logs:/usr/share/elasticsearch/logs:rw"
+    environment:
+      - cluster.name=es-cluster
+      - node.name=es-node2
+      - http.cors.enabled=true
+      - http.cors.allow-origin=*
+      - http.cors.allow-headers=X-Requested-With,X-Auth-Token,Content-Type,Content-Length,Authorization
+      - http.cors.allow-credentials=false
+      - bootstrap.memory_lock=true
+      #ES8默认开启了 ssl 认证，这里关闭
+      - xpack.security.http.ssl.enabled=false
+      #不使用密码登录
+      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - discovery.seed_hosts=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    depends_on:
+      - es-master
+    networks:
+      - docker-net
   es-head:
     image: tobias74/elasticsearch-head:6
     container_name: es-head
