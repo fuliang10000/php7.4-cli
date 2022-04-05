@@ -107,7 +107,7 @@ services: #所有服务集合
       #表示单节点
 #      - discovery.type=single-node
       - discovery.seed_hosts=es-master,es-node1,es-node2
-      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master
     ulimits:
       memlock:
         soft: -1
@@ -139,7 +139,7 @@ services: #所有服务集合
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.seed_hosts=es-master,es-node1,es-node2
-      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master
     ulimits:
       memlock:
         soft: -1
@@ -170,7 +170,7 @@ services: #所有服务集合
       - xpack.security.enabled=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - discovery.seed_hosts=es-master,es-node1,es-node2
-      - cluster.initial_master_nodes=es-master,es-node1,es-node2
+      - cluster.initial_master_nodes=es-master
     ulimits:
       memlock:
         soft: -1
